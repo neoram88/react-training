@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		print = function(msg){
+			console.log(msg);
+		}
+        var instance=1;
+
+        parent = (source, count)=>{
+            let j=1;
+            for(var i=0; i< count;i++){
+                delay(1000*i).then(() => 
+                {
+                    print(source +" "+instance+": "+ j + " seconds over since clicked");
+                    j++;
+                }
+                );
+            }
+            instance++;
+        }
+    
+        const delay = t => new Promise(resolve => setTimeout(resolve, t));
+
+        alternateSol = (source,count) =>{
+            j=1;
+            for(var i=0; i< count;i++){
+                setTimeout(()=>{
+                    print(source +" : "+ j + " seconds over since clicked");
+                    j++;
+                }, 1000*i)
+            }
+        }
+        
+	</script>
+	<form>
+	<input type="text" name="" value="Vivek"> 
+	<input type="button" name="" onclick="alternateSol('A',20)" value="button 1"> 
+	<input type="button" name="" onclick="alternateSol('B',10)" value="button 2"> 
+	</form>
+
+</body>
+</html>
