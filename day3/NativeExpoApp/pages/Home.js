@@ -12,29 +12,48 @@ export default class Home extends React.Component {
 
     handleInput1Change(e) {
         this.setState({input1:parseInt(e.nativeEvent.text)});
-        this.calculate();
+        // this.calculate();
     }
 
     handleInput2Change(e){
         this.setState({input2:parseInt(e.nativeEvent.text)});
-        this.calculate();
+        // this.calculate();
     }
     handleInput3Change(e){
         this.setState({operator:e.nativeEvent.text});
-        this.calculate();
+        // this.calculate();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if ((this.state.input1 !== prevState.input1 ||
+            this.state.input2 !== prevState.input2 ||
+            this.state.operator !== prevState.operator)&&
+            this.state.operator && this.state.input1 && this.state.input2) {
+            this.calculate();
+        }
     }
 
     calculate(){
         let res='';
+        // if(this.state.operator=="+"){
+        //     // res=this.state.input1+this.state.input2;
+        //     this.setState((prevState,props)=>({result:prevState.input1+prevState.input2}));
+        // }else if(this.state.operator=="-"){
+        //     // res=this.state.input1-this.state.input2;
+        //     this.setState((prevState,props)=>({result:prevState.input1-prevState.input2}));
+        // }else if(this.state.operator=="*"){
+        //     // res=this.state.input1*this.state.input2;
+        //     this.setState((prevState,props)=>({result:prevState.input1*prevState.input2}));
+        // }
         if(this.state.operator=="+"){
             res=this.state.input1+this.state.input2;
-            this.setState({result:res})
+            this.setState(({result:res}));
         }else if(this.state.operator=="-"){
             res=this.state.input1-this.state.input2;
-            this.setState({result:res})
+            this.setState(({result:res}));
         }else if(this.state.operator=="*"){
             res=this.state.input1*this.state.input2;
-            this.setState({result:res})
+            this.setState(({result:res}));
         }
     }
 
